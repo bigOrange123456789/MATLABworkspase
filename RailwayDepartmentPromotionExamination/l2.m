@@ -1,0 +1,44 @@
+function [s,flag]=l2(b0,ba,bb,bc,bd,be,l2)
+b=l2;
+
+    A=['A','.',ba(b,:)];
+    B=['B','.',bb(b,:)];
+    C=['C','.',bc(b,:)];
+    D=['D','.',bd(b,:)];
+
+    
+    disp(b0(b,:));
+    disp(A);
+    disp(B);
+    disp(C);
+    disp(D);
+    s=input('','s');
+    flag=0;%假设不用从错题集中移除
+    
+    flag2=1;%假设答案正确
+    k=1;
+    while be(b,k)~=' ',
+        if length(s)<k,flag2=0;break;end;
+        if s(k)~=be(b,k),flag2=0;break;end;
+        k=k+1;
+    end;
+    if length(s)~=k-1,flag2=0;end;
+    
+    
+    if length(s)>0,
+    if s(1)=='-',
+            disp('已从错题集中移除。');flag=1;
+    end;
+    end;
+    
+    if flag2==0,%答案不正确
+        disp(['错了，答案为：',be(b,:)]);
+    else
+        disp('您答对了！');
+        disp('已从错题集中移除。'); flag=1;
+    end;
+    
+    %disp('题目编号：');
+    %disp(b);    
+    %disp('答案为：');
+    %disp(be(b,:));
